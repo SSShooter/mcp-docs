@@ -1,26 +1,26 @@
 ---
-title: "Prompts"
-description: "Create reusable prompt templates and workflows"
+title: "提示词"
+description: "创建可重用的提示词模板和工作流"
 ---
 
-Prompts enable servers to define reusable prompt templates and workflows that clients can easily surface to users and LLMs. They provide a powerful way to standardize and share common LLM interactions.
+提示词使服务器能够定义可重用的提示词模板和工作流，客户端可以轻松地将其呈现给用户和 LLM。它们提供了一种强大的方式来标准化和共享常见的 LLM 交互。
 
 <Note>
-  Prompts are designed to be **user-controlled**, meaning they are exposed from servers to clients with the intention of the user being able to explicitly select them for use.
+  提示词被设计为**用户控制**的，这意味着它们从服务器暴露给客户端时，用户可以明确选择使用它们。
 </Note>
 
-## Overview
+## 概述
 
-Prompts in MCP are predefined templates that can:
-- Accept dynamic arguments
-- Include context from resources
-- Chain multiple interactions
-- Guide specific workflows
-- Surface as UI elements (like slash commands)
+MCP 中的提示词是预定义的模板，可以：
+- 接受动态参数
+- 包含来自资源的上下文
+- 链接多个交互
+- 引导特定工作流程
+- 作为 UI 元素呈现（如斜杠命令）
 
-## Prompt structure
+## 提示词结构
 
-Each prompt is defined with:
+每个提示词的定义包含：
 
 ```typescript
 {
@@ -36,9 +36,9 @@ Each prompt is defined with:
 }
 ```
 
-## Discovering prompts
+## 发现提示词
 
-Clients can discover available prompts through the `prompts/list` endpoint:
+客户端可以通过 `prompts/list` 端点发现可用的提示词：
 
 ```typescript
 // Request
@@ -64,9 +64,9 @@ Clients can discover available prompts through the `prompts/list` endpoint:
 }
 ```
 
-## Using prompts
+## 使用提示词
 
-To use a prompt, clients make a `prompts/get` request:
+要使用提示词，客户端需要发出 `prompts/get` 请求：
 
 ```typescript
 // Request
@@ -95,11 +95,11 @@ To use a prompt, clients make a `prompts/get` request:
 }
 ```
 
-## Dynamic prompts
+## 动态提示词
 
-Prompts can be dynamic and include:
+提示词可以是动态的，并包括：
 
-### Embedded resource context
+### 嵌入的资源上下文
 
 ```json
 {
@@ -120,7 +120,7 @@ Prompts can be dynamic and include:
 }
 ```
 
-When handling the `prompts/get` request:
+当处理 `prompts/get` 请求时：
 
 ```json
 {
@@ -158,7 +158,7 @@ When handling the `prompts/get` request:
 }
 ```
 
-### Multi-step workflows
+### 多步骤工作流
 
 ```typescript
 const debugWorkflow = {
@@ -191,9 +191,9 @@ const debugWorkflow = {
 };
 ```
 
-## Example implementation
+## 实现示例
 
-Here's a complete example of implementing prompts in an MCP server:
+以下是在 MCP 服务器中实现提示词的完整示例：
 
 <Tabs>
   <Tab title="TypeScript">
@@ -375,51 +375,51 @@ Here's a complete example of implementing prompts in an MCP server:
   </Tab>
 </Tabs>
 
-## Best practices
+## 最佳实践
 
-When implementing prompts:
+在实现提示词时：
 
-1. Use clear, descriptive prompt names
-2. Provide detailed descriptions for prompts and arguments
-3. Validate all required arguments
-4. Handle missing arguments gracefully
-5. Consider versioning for prompt templates
-6. Cache dynamic content when appropriate
-7. Implement error handling
-8. Document expected argument formats
-9. Consider prompt composability
-10. Test prompts with various inputs
+1. 使用清晰、描述性的提示词名称
+2. 为提示词和参数提供详细描述
+3. 验证所有必需参数
+4. 优雅地处理缺失参数
+5. 考虑提示词模板的版本控制
+6. 适时缓存动态内容
+7. 实现错误处理
+8. 记录预期的参数格式
+9. 考虑提示词的可组合性
+10. 使用各种输入测试提示词
 
-## UI integration
+## UI 集成
 
-Prompts can be surfaced in client UIs as:
+提示词可以在客户端 UI 中呈现为：
 
-- Slash commands
-- Quick actions
-- Context menu items
-- Command palette entries
-- Guided workflows
-- Interactive forms
+- 斜杠命令
+- 快速操作
+- 上下文菜单项
+- 命令面板条目
+- 引导式工作流
+- 交互式表单
 
-## Updates and changes
+## 更新和变更
 
-Servers can notify clients about prompt changes:
+服务器可以通知客户端提示词的变更：
 
-1. Server capability: `prompts.listChanged`
-2. Notification: `notifications/prompts/list_changed`
-3. Client re-fetches prompt list
+1. 服务器功能：`prompts.listChanged`
+2. 通知：`notifications/prompts/list_changed`
+3. 客户端重新获取提示词列表
 
-## Security considerations
+## 安全注意事项
 
-When implementing prompts:
+在实现提示词时：
 
-- Validate all arguments
-- Sanitize user input
-- Consider rate limiting
-- Implement access controls
-- Audit prompt usage
-- Handle sensitive data appropriately
-- Validate generated content
-- Implement timeouts
-- Consider prompt injection risks
-- Document security requirements
+- 验证所有参数
+- 清理用户输入
+- 考虑速率限制
+- 实现访问控制
+- 审计提示词使用情况
+- 适当处理敏感数据
+- 验证生成的内容
+- 实现超时机制
+- 考虑提示词注入风险
+- 记录安全要求
